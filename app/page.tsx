@@ -1,10 +1,9 @@
-
-import Hero from "./(frontend)/LandingPage";
+import BuilderPage from "./(frontend)/BuilderPage";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <BuilderPage />
     </>
   );
 }
