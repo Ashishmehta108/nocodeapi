@@ -27,13 +27,13 @@ export default function Header() {
   };
 
   return (
-    <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 z-10 relative shadow-sm">
-      <div className="flex items-center gap-4 flex-1">
-        <h1 className="text-xl font-bold text-foreground tracking-tight flex items-center gap-2">
+    <header className="h-auto md:h-16 bg-card border-b border-border flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-3 md:py-0 z-10 relative shadow-sm gap-3 md:gap-0">
+      <div className="flex items-center justify-between w-full md:w-auto md:flex-1 gap-4">
+        <h1 className="text-xl font-bold text-foreground tracking-tight flex items-center gap-2 shrink-0">
           <span className="text-blue-600 dark:text-blue-500">NoCodeApi</span>
         </h1>
 
-        <form onSubmit={handleGenerate} className="flex items-center w-full max-w-2xl ml-8">
+        <form onSubmit={handleGenerate} className="hidden md:flex items-center w-full max-w-2xl ml-8">
           <div className="relative w-full shadow-sm">
             <input
               type="text"
@@ -51,9 +51,55 @@ export default function Header() {
             Generate
           </button>
         </form>
+
+        <div className="flex items-center gap-1.5 md:hidden">
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-1.5 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors border border-transparent"
+              title="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun1 variant="Bold" size={16} /> : <Moon variant="Bold" size={16} />}
+            </button>
+          )}
+          <div className="w-px h-5 bg-border mx-0.5"></div>
+          <button
+            onClick={clearCanvas}
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 p-1.5 rounded-md text-sm font-medium transition-colors"
+            title="Clear Canvas"
+          >
+            <Trash variant="Bold" size={16} />
+          </button>
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white p-1.5 rounded-md text-sm font-medium transition-colors shadow-sm"
+            title="Export Code"
+          >
+            <Import variant="Bold" size={16} />
+          </button>
+        </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <form onSubmit={handleGenerate} className="flex md:hidden items-center w-full">
+        <div className="relative w-full shadow-sm">
+          <input
+            type="text"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder='Try: "Build a REST API..."'
+            className="w-full bg-background border border-input text-foreground text-sm rounded-l-md pl-9 pr-3 py-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm"
+          />
+          <MagicStar variant="Bold" className="absolute left-3 top-2.5 text-muted-foreground" size={16} />
+        </div>
+        <button
+          type="submit"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-2 rounded-r-md text-sm font-medium transition-colors border border-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background shadow-sm"
+        >
+          Gen
+        </button>
+      </form>
+
+      <div className="hidden md:flex items-center gap-3">
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
