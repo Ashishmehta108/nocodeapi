@@ -8,7 +8,12 @@ export type NodeType =
   | 'error_handler'
   | 'ai_transform'
   | 'validator'
-  | 'webhook';
+  | 'webhook'
+  | 'redis_cache'
+  | 'rate_limiter'
+  | 's3_upload'
+  | 'bullmq_job'
+  | 'send_email';
 
 export interface BaseNodeData extends Record<string, unknown> {
   label: string;
@@ -61,6 +66,32 @@ export interface WebhookData extends BaseNodeData {
   event: string;
 }
 
+export interface RedisCacheData extends BaseNodeData {
+  action: 'get' | 'set' | 'delete';
+  keyPattern: string;
+  ttlSeconds: number;
+}
+
+export interface RateLimiterData extends BaseNodeData {
+  maxRequests: number;
+  windowMinutes: number;
+}
+
+export interface S3UploadData extends BaseNodeData {
+  bucketName: string;
+  acl: 'private' | 'public-read';
+}
+
+export interface BullMQJobData extends BaseNodeData {
+  queueName: string;
+  jobName: string;
+}
+
+export interface SendEmailData extends BaseNodeData {
+  provider: 'smtp' | 'resend' | 'sendgrid';
+  subject: string;
+}
+
 export type AnyNodeData =
   | HttpTriggerData
   | RouteHandlerData
@@ -71,7 +102,12 @@ export type AnyNodeData =
   | ResponseFormatterData
   | ErrorHandlerData
   | AiTransformData
-  | WebhookData;
+  | WebhookData
+  | RedisCacheData
+  | RateLimiterData
+  | S3UploadData
+  | BullMQJobData
+  | SendEmailData;
 
 // A generic generated file
 export interface GeneratedFile {

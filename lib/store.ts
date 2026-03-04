@@ -162,6 +162,16 @@ function getDefaultData(type: NodeType): AnyNodeData {
       return { type, label: 'AI Transform', prompt: 'Summarize data' };
     case 'webhook':
       return { type, label: 'Webhook', event: 'user.created' };
+    case 'redis_cache':
+      return { type, label: 'Redis Cache', action: 'get', keyPattern: 'user:{id}', ttlSeconds: 3600 };
+    case 'rate_limiter':
+      return { type, label: 'Rate Limiter', maxRequests: 100, windowMinutes: 15 };
+    case 's3_upload':
+      return { type, label: 'S3 Upload', bucketName: 'my-bucket', acl: 'private' };
+    case 'bullmq_job':
+      return { type, label: 'BG Job (Queue)', queueName: 'default-queue', jobName: 'processImage' };
+    case 'send_email':
+      return { type, label: 'Send Email', provider: 'resend', subject: 'Welcome!' };
     default:
       return { type: 'http_trigger', label: 'Unknown', method: 'GET', path: '/' } as any;
   }
