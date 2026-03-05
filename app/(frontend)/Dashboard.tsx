@@ -353,7 +353,7 @@ export default function Dashboard({ auth }: { auth?: AuthContextType }) {
     <TooltipProvider>
       <div className="flex h-screen w-full dark:bg-black bg-white dark:bg-grid-white/[0.1] bg-grid-black/[0.1] dashboard overflow-hidden">
         <div
-          className="fixed top-0 left-0 h-full z-40"
+          className="fixed top-0 left-0 h-full z-40 hidden md:block"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

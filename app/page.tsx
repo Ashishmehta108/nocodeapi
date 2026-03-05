@@ -729,10 +729,10 @@ export default function Home() {
             </div>
 
             {/* Editor Split */}
-            <div className="grid md:grid-cols-[1fr_280px] text-[13px] font-mono leading-relaxed h-[420px]">
+            <div className="grid md:grid-cols-[1fr_280px] text-[13px] font-mono leading-relaxed md:h-[420px] flex flex-col md:grid">
 
               {/* Left — Code Panel */}
-              <div className="border-r border-black/[0.06] dark:border-white/[0.06] p-6 bg-white dark:bg-[#0D0D0D] overflow-auto transition-colors duration-300">
+              <div className="border-b md:border-b-0 md:border-r border-black/[0.06] dark:border-white/[0.06] p-4 md:p-6 bg-white dark:bg-[#0D0D0D] overflow-auto transition-colors duration-300 max-h-[350px] md:max-h-full">
 
                 {/* ── src/index.ts ── */}
                 {activeTab === "index" && (
@@ -984,7 +984,7 @@ export default function Home() {
               </div>
 
               {/* Right — Feature list */}
-              <div className="p-6 bg-zinc-50 dark:bg-[#050505] flex flex-col justify-center gap-7 font-sans transition-colors duration-300">
+              <div className="p-4 md:p-6 bg-zinc-50 dark:bg-[#050505] flex flex-col justify-center gap-5 md:gap-7 font-sans transition-colors duration-300">
                 {[
                   {
                     icon: <Hierarchy size={15} color="#a1a1aa" variant="Bold" />,
@@ -1019,9 +1019,9 @@ export default function Home() {
       </main>
 
       {/* Grid Features */}
-      <section className="border-t border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/80 dark:bg-[#050505] py-20 transition-colors duration-300">
+      <section className="border-t border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/80 dark:bg-[#050505] py-16 md:py-20 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
                 icon: <Cloud size={18} color="#a1a1aa" variant="Bold" />,
