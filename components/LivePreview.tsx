@@ -40,7 +40,7 @@ export default function LivePreview() {
   }, [flattenedFiles, activeFilePath]);
 
   return (
-    <div className="h-64 bg-card border-t border-border flex flex-col z-10 shadow-sm relative">
+    <div className="h-full bg-card border-t border-border flex flex-col z-10 shadow-sm relative">
       <div className="flex items-center px-4 py-2 border-b border-border bg-muted/30 text-sm overflow-x-auto whitespace-nowrap scsb">
         <h3 className="text-foreground font-semibold flex items-center gap-2 mr-6 shrink-0">
           <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span> Live Preview

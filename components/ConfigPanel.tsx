@@ -26,7 +26,7 @@ export default function ConfigPanel() {
   const labelClasses = "block text-xs font-semibold text-muted-foreground mb-1.5 uppercase tracking-wide";
 
   return (
-    <aside className="w-80 bg-card border-l border-border p-5 flex flex-col h-full overflow-y-auto shadow-sm z-10">
+    <aside className="w-full h-full bg-card border-l border-border p-5 flex flex-col overflow-y-auto shadow-sm z-10">
       <h2 className="text-foreground font-semibold mb-6 flex items-center gap-2 pb-4 border-b border-border">
         Configure <span className="text-primary">{data.label}</span>
       </h2>
