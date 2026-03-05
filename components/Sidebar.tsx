@@ -37,10 +37,22 @@ const nodeTypes: { type: NodeType; label: string; icon: React.ReactNode; color: 
   { type: 'send_email', label: 'Send Email', icon: <Sms variant={v} size={16} />, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10' },
 ];
 
+import { useBuilderStore } from '../lib/store';
+
 export default function Sidebar() {
+  const { addNode } = useBuilderStore();
+
   const onDragStart = (event: React.DragEvent, nodeType: NodeType) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleNodeClick = (nodeType: NodeType) => {
+    // Determine a basic center placement on mobile/desktop
+    // Using simple offset so multiple nodes don't overlap completely
+    const randomOffset = Math.floor(Math.random() * 50);
+    const position = { x: 100 + randomOffset, y: 100 + randomOffset };
+    addNode(nodeType, position);
   };
 
   return (
@@ -52,6 +64,7 @@ export default function Sidebar() {
             key={node.type}
             className="flex items-center gap-3 p-3 bg-background border border-border rounded-lg cursor-grab hover:border-primary/50 hover:shadow-sm transition-all text-foreground text-sm font-medium group"
             onDragStart={(event) => onDragStart(event, node.type)}
+            onClick={() => handleNodeClick(node.type)}
             draggable
           >
             <div className={`p-1.5 rounded-md ${node.bgColor} ${node.color} group-hover:scale-110 transition-transform`}>
